@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ recipe.name }} | Learny</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/review.js') }}" defer></script>
+</head>
+
+
+<body data-recipe-id="{{ recipe_id }}">
+  <header class="app-header"><a class="back-link" href="{{ url_for('recipes4') }}">← 一覧へ</a>
+    <a class="header-title" href="{{ url_for('home') }}">Learny</a>
+    <span></span>
+  </header>
+
+  <nav id="slide-menu" class="slide-menu" aria-label="メインメニュー"><ul class="menu-list">
+      <li><a href="{{ url_for('home') }}">🏠 ホーム</a></li>
+      <li><a href="{{ url_for('recipes4') }}">🍳 食材4つ以内レシピ</a></li>
+      <li><a href="#" aria-disabled="true" onclick="return false">🥬 野菜の見分け方（準備中）</a></li>
+      <li><a href="#" aria-disabled="true" onclick="return false">🔍 料理提案診断（準備中）</a></li>
+    </ul></nav>]
+
+  <main>
+    <div class="menu-img"><img src="{{ url_for('static', filename='images/' + (recipe.image or (recipe_id + '.jpg'))) }}" alt="{{ recipe.name }}" onerror="this.style.display='none';this.parentElement.classList.add('no-image');this.parentElement.textContent='🍳'"></div>
+    <p class="recipe-meta">{{ recipe.category }} ・ 約{{ recipe.minutes }}分 ・ 材料{{ recipe.ingredients|length }}つ</p>
+    <h1 class="menu-title">{{ recipe.name }}</h1>
+    <div class="mat"><h2>材料 <small>（1人分）</small></h2>
+      {% for name, amount in recipe.ingredients %}<div class="ingredient-row"><span>・{{ name }}</span><span>{{ amount }}</span></div>{% endfor %}
+    </div>
+    <div class="recipe"><h2>作り方</h2>
+      {% for step in recipe.steps %}<p class="step"><strong>{{ loop.index }}.</strong> {{ step }}</p>{% endfor %}
+    </div>
+    <section class="review-section" aria-label="レビュー">
+      <h2>みんなのレビュー ⭐</h2>
+      <div class="review-summary"><div class="review-stars" id="average-stars">☆☆☆☆☆</div><p><strong id="review-average">まだ評価はありません</strong></p><p id="review-count">レビュー 0件</p></div>
+      <form id="review-form" class="review-form"><h3>レビューを投稿する</h3>
+        <label for="review-name">お名前</label><input id="review-name" maxlength="30" required placeholder="ニックネーム">
+        <label for="review-rating">星の数</label><select id="review-rating" required><option value="5">★★★★★（5）</option><option value="4">★★★★☆（4）</option><option value="3">★★★☆☆（3）</option><option value="2">★★☆☆☆（2）</option><option value="1">★☆☆☆☆（1）</option></select>
+        <label for="review-comment">コメント</label><textarea id="review-comment" maxlength="1000" required placeholder="作ってみた感想を教えてね！"></textarea>
+        <button id="review-submit" type="submit">レビューを投稿する</button><p id="review-message" role="status" aria-live="polite"></p>
+      </form>
+      <div class="review-list"><h3>投稿されたレビュー</h3><div id="review-items"><p>読み込み中...</p></div></div>
+    </section>
+  </main>
+</body>
+</html>

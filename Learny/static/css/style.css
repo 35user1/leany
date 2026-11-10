@@ -1,0 +1,936 @@
+• {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+ 
+/* 追加部分 */
+:root {
+--mintgreen: #a8e6cf;
+--white: #fff;
+--brawn: #333;
+--brown: #333;
+--green: #2d5a43;
+--winered: #5d2533;
+--wine: #5d2533;
+--cream: #fff8eb;
+}
+ 
+body {
+width: 100%;
+min-height: 100vh;
+background: #f7faf8;
+color: #333;
+}
+ 
+a {
+color: inherit;
+}
+ 
+.hidden,
+[hidden] {
+display: none !important;
+}
+ 
+/* ローディング */
+.loading-screen {
+position: fixed;
+inset: 0;
+background: var(--mintgreen);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 9999;
+transition: opacity .5s ease;
+}
+ 
+.loading-content {
+text-align: center;
+padding: 20px;
+}
+ 
+.lion-avatar-wrapper {
+width: 160px;
+height: 160px;
+margin: 0 auto 20px;
+border-radius: 50%;
+background: #fff;
+padding: 8px;
+box-shadow: 0 8px 20px #0002;
+animation: float 2s ease-in-out infinite alternate;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 70px;
+}
+ 
+.lion-avatar-wrapper img {
+width: 100%;
+height: 100%;
+border-radius: 50%;
+object-fit: cover;
+}
+ 
+@keyframes float {
+to {
+transform: translateY(-10px);
+}
+}
+ 
+.typing-container {
+font-size: 1.2rem;
+font-weight: bold;
+color: var(--green);
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 30px;
+}
+ 
+.cursor {
+animation: blink .8s infinite;
+color: var(--green);
+}
+ 
+@keyframes blink {
+50% {
+opacity: 0;
+}
+}
+ 
+/* ヘッダーとメニュー */
+.app-header {
+background: var(--mintgreen);
+height: 56px;
+padding: 0 16px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+box-shadow: 0 2px 5px #0002;
+position: sticky;
+top: 0;
+z-index: 100;
+}
+ 
+.header-title {
+font-size: 1.2rem;
+color: var(--green);
+text-decoration: none;
+font-weight: bold;
+}
+ 
+.back-link {
+color: var(--green);
+text-decoration: none;
+font-size: .9rem;
+}
+ 
+.hamburger-btn {
+background: none;
+border: 0;
+cursor: pointer;
+width: 30px;
+height: 24px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding: 0;
+z-index: 200;
+}
+ 
+.hamburger-btn .bar {
+width: 100%;
+height: 3px;
+background: var(--green);
+border-radius: 2px;
+transition: all .3s;
+}
+ 
+.hamburger-btn.active .bar:nth-child(1) {
+transform: translateY(10.5px) rotate(45deg);
+}
+ 
+.hamburger-btn.active .bar:nth-child(2) {
+opacity: 0;
+}
+ 
+.hamburger-btn.active .bar:nth-child(3) {
+transform: translateY(-10.5px) rotate(-45deg);
+}
+ 
+.slide-menu {
+position: fixed;
+top: 0;
+left: -250px;
+width: 250px;
+height: 100%;
+background: #fff;
+box-shadow: 2px 0 10px #0002;
+z-index: 150;
+transition: left .3s;
+padding-top: 70px;
+}
+ 
+.slide-menu.active {
+left: 0;
+}
+ 
+.menu-list {
+list-style: none;
+}
+ 
+.menu-list li a {
+display: block;
+padding: 16px 20px;
+color: #333;
+text-decoration: none;
+font-size: 1rem;
+border-bottom: 1px solid #f0f0f0;
+transition: background .2s;
+}
+ 
+.menu-list li a:hover {
+background: #f7faf8;
+color: var(--green);
+}
+ 
+.menu-overlay {
+position: fixed;
+inset: 0;
+background: #0006;
+z-index: 140;
+display: none;
+}
+ 
+.menu-overlay.active {
+display: block;
+}
+ 
+/* ホーム・カルーセル */
+.main-content {
+padding: 30px 14px;
+max-width: 950px;
+margin: auto;
+}
+ 
+.home-heading {
+font-size: clamp(23px, 4vw, 34px);
+text-align: center;
+margin: 12px 0 28px;
+color: var(--winered);
+}
+ 
+.carousel-container {
+position: relative;
+max-width: 800px;
+margin: 10px auto 0;
+}
+ 
+.slider-wrapper {
+position: relative;
+overflow: hidden;
+border-radius: 16px;
+box-shadow: 0 4px 15px #0002;
+background: var(--winered);
+min-height: 220px;
+}
+ 
+.slide-card {
+display: none;
+grid-template-columns: 1fr 1fr;
+color: white;
+width: 100%;
+}
+ 
+.slide-card.active {
+display: grid;
+animation: fadeIn .4s ease-in-out;
+}
+ 
+@keyframes fadeIn {
+from {
+opacity: 0;
+}
+ 
+to {
+opacity: 1;
+}
+}
+ 
+.slide-image {
+width: 100%;
+min-height: 260px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 85px;
+background: #fff3e8;
+}
+ 
+.slide-image img {
+width: 100%;
+height: 100%;
+min-height: 260px;
+object-fit: cover;
+display: block;
+}
+ 
+.slide-info {
+padding: 30px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+background: var(--winered);
+}
+ 
+.slide-info h2 {
+font-size: 1.6rem;
+margin-bottom: 5px;
+color: white;
+}
+ 
+.slide-sub {
+font-size: .85rem;
+color: #ffd8d8;
+margin-bottom: 8px;
+}
+ 
+.slide-desc {
+font-size: .85rem;
+color: #eee;
+margin-bottom: 18px;
+}
+ 
+.view-btn {
+display: inline-block;
+align-self: flex-start;
+padding: 10px 20px;
+background: #88c9b3;
+color: var(--green);
+border: 0;
+border-radius: 20px;
+font-weight: bold;
+cursor: pointer;
+font-size: .9rem;
+text-decoration: none;
+transition: transform .2s, background .2s;
+}
+ 
+.view-btn:hover {
+background: var(--mintgreen);
+transform: scale(1.05);
+}
+ 
+.slider-arrow {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+width: 36px;
+height: 36px;
+background: #fffd;
+border: 0;
+border-radius: 50%;
+font-size: 1.1rem;
+font-weight: bold;
+color: #333;
+cursor: pointer;
+z-index: 10;
+box-shadow: 0 2px 6px #0003;
+}
+ 
+.slider-arrow.prev {
+left: -12px;
+}
+ 
+.slider-arrow.next {
+right: -12px;
+}
+ 
+.dots-container {
+display: flex;
+justify-content: center;
+gap: 8px;
+margin-top: 16px;
+}
+ 
+.dot {
+width: 10px;
+height: 10px;
+background: #ccc;
+border: 0;
+border-radius: 50%;
+cursor: pointer;
+transition: background .3s, transform .3s;
+}
+ 
+.dot.active {
+background: var(--green);
+transform: scale(1.2);
+}
+ 
+.home-link-box {
+max-width: 800px;
+margin: 45px auto;
+background: var(--cream);
+border-radius: 20px;
+padding: 35px;
+text-align: center;
+}
+ 
+.home-link-box h2 {
+color: var(--winered);
+margin-bottom: 10px;
+}
+ 
+.home-link-box p {
+margin-bottom: 20px;
+}
+ 
+.home-link-box .view-btn {
+align-self: center;
+}
+ 
+/* 食材4つ以内一覧 */
+h1,
+h2,
+h3 {
+color: var(--winered);
+}
+ 
+.menu-hero {
+text-align: center;
+min-height: 250px;
+padding: 50px 20px 34px;
+position: relative;
+overflow: hidden;
+}
+ 
+.eyebrow {
+font-family: 'Noto Serif JP', serif;
+font-weight: 600;
+letter-spacing: .08em;
+color: var(--winered);
+}
+ 
+.menu-hero h1 {
+font-size: clamp(32px, 5vw, 58px);
+line-height: 1.35;
+margin: 12px 0;
+}
+ 
+.tagline {
+font-size: 18px;
+letter-spacing: .08em;
+margin-bottom: 22px;
+}
+ 
+.hero-note {
+background: var(--winered);
+color: white;
+max-width: 490px;
+margin: 0 auto;
+padding: 15px 20px;
+border-radius: 13px;
+font-weight: 700;
+font-size: 14px;
+}
+ 
+.leaf {
+position: absolute;
+font-size: clamp(70px, 12vw, 155px);
+color: var(--mintgreen);
+opacity: .9;
+pointer-events: none;
+line-height: 1;
+transform: rotate(-30deg);
+}
+ 
+.leaf.left {
+top: 130px;
+left: -30px;
+}
+ 
+.leaf.right {
+top: 25px;
+right: -10px;
+transform: rotate(35deg);
+}
+ 
+.section {
+position: relative;
+padding: 54px 22px;
+}
+ 
+.benefits {
+background: #fcf8ef;
+}
+ 
+.benefit-list {
+display: flex;
+justify-content: center;
+gap: clamp(20px, 5vw, 75px);
+flex-wrap: wrap;
+}
+ 
+.benefit {
+width: 200px;
+height: 200px;
+border: 2px solid var(--brown);
+border-radius: 50%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+position: relative;
+padding: 15px;
+}
+ 
+.benefit-label {
+position: absolute;
+top: -14px;
+background: var(--brawn);
+color: white;
+border-radius: 30px;
+padding: 3px 22px;
+font-weight: 700;
+}
+ 
+.benefit-icon {
+font-size: 45px;
+line-height: 1.3;
+color: var(--winered);
+}
+ 
+.benefit strong {
+font-size: 19px;
+margin: 8px 0 2px;
+color: var(--brown);
+}
+ 
+.benefit small {
+font-size: 12px;
+}
+ 
+.recipes {
+max-width: 1130px;
+margin: auto;
+}
+ 
+.recipes h2 {
+font-size: clamp(27px, 3.5vw, 39px);
+text-align: center;
+margin-bottom: 28px;
+}
+ 
+.filters {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 12px;
+margin-bottom: 35px;
+}
+ 
+.filter {
+border: 1.5px solid var(--mintgreen);
+border-radius: 30px;
+background: transparent;
+color: var(--green);
+min-width: 110px;
+padding: 8px 18px;
+font-size: 14px;
+cursor: pointer;
+}
+ 
+.filter.active,
+.filter:hover {
+background: var(--winered);
+border-color: var(--winered);
+color: white;
+}
+ 
+.recipe-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 32px 23px;
+}
+ 
+.recipe-card {
+min-width: 0;
+text-decoration: none;
+color: inherit;
+}
+ 
+.photo-wrap {
+position: relative;
+aspect-ratio: 1.48;
+background: var(--cream);
+border-radius: 7px;
+overflow: hidden;
+}
+ 
+.photo-wrap img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+ 
+.photo-wrap.no-image,
+.menu-img.no-image {
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 65px;
+}
+ 
+.category {
+position: absolute;
+top: 0;
+left: 0;
+border-radius: 0 0 20px 0;
+background: var(--mintgreen);
+color: var(--green);
+font-size: 12px;
+padding: 5px 13px;
+}
+ 
+.recipe-card h3 {
+font-size: 17px;
+margin: 7px 0 4px;
+}
+ 
+.recipe-card:hover h3 {
+text-decoration: underline;
+}
+ 
+.meta {
+color: var(--green);
+font-size: 13px;
+}
+ 
+.ingredients {
+font-size: 12px;
+margin: 5px 0;
+line-height: 1.6;
+color: #555;
+}
+ 
+.closing {
+background: #e0e9df;
+border-radius: 28px;
+max-width: 890px;
+margin: 20px auto 65px;
+text-align: center;
+padding: 20px;
+}
+ 
+.closing h2 {
+font-size: 23px;
+margin: 0;
+}
+ 
+.closing p {
+margin: 5px;
+font-size: 13px;
+}
+ 
+.closing span {
+font-size: 32px;
+color: var(--green);
+}
+ 
+/* レシピ詳細 */
+.menu-img {
+width: 85%;
+max-width: 650px;
+height: 300px;
+margin: 40px auto 20px;
+border-radius: 20px;
+background: var(--cream);
+overflow: hidden;
+}
+ 
+.menu-img img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+ 
+.recipe-meta {
+text-align: center;
+color: var(--green);
+font-size: 14px;
+}
+ 
+.menu-title {
+text-align: center;
+font-size: clamp(26px, 4vw, 36px);
+font-weight: bold;
+color: var(--winered);
+margin: 20px 0 35px;
+}
+ 
+.mat,
+.recipe {
+display: block;
+width: 85%;
+max-width: 650px;
+margin: 25px auto;
+padding: 30px;
+border-radius: 18px;
+font-size: 16px;
+line-height: 2;
+text-decoration: none;
+}
+ 
+.mat {
+background: #e7eee5;
+border-left: 6px solid var(--mintgreen);
+color: var(--green);
+}
+ 
+.recipe {
+background: #fffdf8;
+border: 1px solid var(--cream);
+border-left: 6px solid var(--winered);
+color: var(--winered);
+}
+ 
+.mat h2,
+.recipe h2 {
+font-size: 24px;
+margin-bottom: 16px;
+}
+ 
+.mat h2 small {
+font-size: 14px;
+font-weight: normal;
+}
+ 
+.ingredient-row {
+display: flex;
+justify-content: space-between;
+gap: 16px;
+border-bottom: 1px dashed #a7bcae;
+padding: 4px 0;
+}
+ 
+.ingredient-row span:last-child {
+white-space: nowrap;
+}
+ 
+.step {
+margin: 12px 0;
+line-height: 1.8;
+}
+ 
+/* レビュー */
+.review-section {
+width: 85%;
+max-width: 650px;
+margin: 60px auto;
+color: var(--winered);
+}
+ 
+.review-section h2 {
+text-align: center;
+font-size: 26px;
+margin-bottom: 25px;
+}
+ 
+.review-summary {
+background: #e7eee5;
+padding: 25px;
+border-radius: 18px;
+text-align: center;
+margin-bottom: 30px;
+}
+ 
+.review-stars {
+color: #b68b43;
+font-size: 28px;
+letter-spacing: 4px;
+margin-bottom: 10px;
+}
+ 
+.review-form {
+background: #fffdf8;
+border: 1px solid var(--cream);
+border-radius: 18px;
+padding: 30px;
+margin-bottom: 35px;
+}
+ 
+.review-form h3 {
+margin-bottom: 20px;
+color: var(--winered);
+}
+ 
+.review-form label {
+display: block;
+margin: 15px 0 8px;
+font-weight: bold;
+}
+ 
+.review-form input,
+.review-form select,
+.review-form textarea {
+width: 100%;
+padding: 12px;
+border: 1px solid #e7cfcf;
+border-radius: 10px;
+background: white;
+font-size: 15px;
+font-family: inherit;
+}
+ 
+.review-form textarea {
+height: 120px;
+resize: vertical;
+}
+ 
+#review-submit {
+display: block;
+width: 100%;
+padding: 15px;
+margin-top: 25px;
+background: var(--winered);
+color: white;
+border: 0;
+border-radius: 30px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+transition: transform .3s;
+}
+ 
+#review-submit:hover {
+transform: translateY(-2px);
+}
+ 
+#review-submit:disabled {
+opacity: .6;
+cursor: wait;
+}
+ 
+#review-message {
+margin-top: 12px;
+min-height: 1.5em;
+}
+ 
+.review-list {
+margin-top: 35px;
+}
+ 
+.review-list h3 {
+border-bottom: 2px solid var(--mintgreen);
+padding-bottom: 12px;
+margin-bottom: 20px;
+}
+ 
+.review-item {
+background: #fffdf8;
+border-radius: 15px;
+padding: 20px;
+margin-bottom: 15px;
+border: 1px solid #f0dede;
+overflow-wrap: anywhere;
+}
+ 
+.review-item .stars {
+color: #b68b43;
+margin: 8px 0;
+}
+ 
+.review-item small {
+display: block;
+color: #777;
+margin-top: 10px;
+}
+ 
+/* レスポンシブ対応 */
+@media (max-width: 800px) {
+.recipe-grid {
+grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+}
+ 
+@media (max-width: 600px) {
+.recipe-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 24px 14px;
+}
+ 
+.benefit {
+width: 150px;
+height: 150px;
+}
+ 
+.benefit strong {
+font-size: 15px;
+}
+ 
+.benefit-icon {
+font-size: 35px;
+}
+ 
+.section {
+padding: 40px 16px;
+}
+ 
+.mat,
+.recipe,
+.review-section,
+.menu-img {
+width: 92%;
+}
+ 
+.mat,
+.recipe,
+.review-form {
+padding: 20px;
+}
+}
+ 
+@media (max-width: 500px) {
+.slide-card {
+grid-template-columns: 1fr;
+}
+ 
+.slide-image,
+.slide-image img {
+min-height: 170px;
+height: 170px;
+}
+ 
+.slide-info {
+padding: 20px;
+}
+ 
+.slider-arrow {
+top: 85px;
+}
+ 
+.slider-arrow.prev {
+left: 8px;
+}
+ 
+.slider-arrow.next {
+right: 8px;
+}
+ 
+.menu-img {
+height: 230px;
+}
+ 
+.recipe-card h3 {
+font-size: 15px;
+}
+ 
+.ingredients {
+font-size: 11px;
+}
+}
