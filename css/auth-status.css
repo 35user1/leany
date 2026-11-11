@@ -1,0 +1,65 @@
+/* ヘッダー右上のログイン表示（背景色に左右されないよう、それぞれに色を付けている） */
+.auth-status {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 24px;
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.auth-status-link,
+.auth-status-badge,
+.auth-status-logout {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font: inherit;
+  white-space: nowrap;
+}
+
+/* 未ログイン：ワインレッドの「ログイン」 */
+.auth-status-link {
+  background: #5d2533;
+  color: #fff8eb;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* ログイン中：クリーム色の「ログイン中」 */
+.auth-status-badge {
+  background: #fff8eb;
+  color: #2d5a43;
+  font-weight: 700;
+}
+
+/* ログアウトボタン */
+.auth-status-logout {
+  border: 1px solid #5d2533;
+  background: transparent;
+  color: #5d2533;
+  cursor: pointer;
+}
+
+.auth-status-logout:hover {
+  background: #5d2533;
+  color: #fff8eb;
+}
+
+.auth-status :focus-visible {
+  outline: 3px solid #2d5a43;
+  outline-offset: 2px;
+}
+
+/* スマホの幅では「ログイン中」を小さく */
+@media (max-width: 420px) {
+  .auth-status { gap: 4px; font-size: 0.7rem; }
+  .auth-status-link,
+  .auth-status-badge,
+  .auth-status-logout { padding: 5px 8px; }
+}
+
+@media (max-width: 520px) {
+  .app-header { flex-wrap: wrap; }
+  .app-header .search-box { order: 3; width: 100%; }
+}
