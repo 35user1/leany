@@ -1,8 +1,11 @@
 ## ⚠️ ルール
-*作業開始前 最新状態を取得(PULL)
-*作業中 VS Codeで編集 
-*作業終了 Commit・Push
-（*提出 Pull Request）
+**作業開始前**
+最新状態を取得(PULL)
+**作業中**
+VS Codeで編集
+**作業終了** 
+Commit・Push
+（提出 Pull Request）
 
 ****他の人が更新した後は必ず最新状態を取得（PULL）****
 詳細は下に↓
