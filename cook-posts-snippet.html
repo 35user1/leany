@@ -1,0 +1,33 @@
+<!-- ① <head> の中に入れる -->
+<link rel="stylesheet" href="css/cook-posts.css">
+
+<!-- ② レシピページの好きな場所に貼る（data-recipe-id はレシピごとに変える） -->
+<section id="cook-posts" data-recipe-id="tamago-kake-gohan">
+  <h2 class="cp-title">作ってみた</h2>
+
+  <!-- ログインしているときだけ表示 -->
+  <form id="cook-form" class="cp-form" hidden>
+    <label for="cook-photo">写真</label>
+    <input type="file" id="cook-photo" accept="image/jpeg,image/png,image/webp,image/gif">
+
+    <label for="cook-comment">コメント（500文字まで・改行できます）</label>
+    <textarea id="cook-comment" rows="4" maxlength="500"></textarea>
+
+    <button type="submit" id="cook-submit" class="cp-button">投稿する</button>
+  </form>
+
+  <!-- ログインしていないときだけ表示 -->
+  <p id="cook-login-note" class="cp-note">
+    <a href="auth.html">ログイン</a>すると、作った料理の写真を投稿できます。
+  </p>
+
+  <p id="cook-message" class="cp-message" role="status" aria-live="polite" hidden></p>
+
+  <p id="cook-empty" class="cp-note" hidden>まだ投稿がありません。最初の1枚を投稿してみましょう。</p>
+  <ul id="cook-list" class="cp-list"></ul>
+</section>
+
+<!-- ③ </body> の直前に、この順番で読み込む -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/script.js"></script>
+<script src="js/cook-posts.js"></script>

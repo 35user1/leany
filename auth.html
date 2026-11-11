@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ログイン</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="auth">
+
+    <!-- ログインしていないとき -->
+    <section id="guest-area" class="card" aria-labelledby="auth-title">
+      <h1 id="auth-title" class="title">ログイン</h1>
+
+      <div class="tabs" role="tablist" aria-label="ログインか新規登録かを選ぶ">
+        <button type="button" id="tab-login" class="tab" role="tab" aria-selected="true">ログイン</button>
+        <button type="button" id="tab-signup" class="tab" role="tab" aria-selected="false">新規登録</button>
+      </div>
+
+      <form id="auth-form" novalidate>
+        <div class="field">
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" autocomplete="email" required>
+        </div>
+
+        <div class="field">
+          <label for="password">パスワード</label>
+          <input type="password" id="password" autocomplete="current-password" minlength="6" required>
+          <p id="password-hint" class="hint" hidden>6文字以上で入力してください</p>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="show-password">
+          パスワードを表示する
+        </label>
+
+        <p id="message" class="message" role="status" aria-live="polite" hidden></p>
+
+        <button type="submit" id="submit-button" class="button">ログインする</button>
+      </form>
+
+      <a class="back" href="index.html">トップページへ戻る</a>
+    </section>
+
+    <!-- ログインしているとき -->
+    <section id="user-area" class="card" hidden>
+      <h1 class="title">ログイン中です</h1>
+      <p class="user"><span id="user-email"></span></p>
+      <a class="button button-link" href="index.html">レシピを見る</a>
+      <button type="button" id="logout-button" class="button button-sub">ログアウトする</button>
+    </section>
+
+  </main>
+
+  <!-- Supabaseのライブラリを先に読み込む -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
