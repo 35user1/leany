@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ダイエットレシピ - Learny</title>
+<link rel="icon" href="images/キャラデザ（ファビコン用）.png">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/diet.js" defer></script>
+<script src="js/script.js" defer></script>
+<script src="js/search.js" defer></script>
+</head>
+<body class="recipe-detail-body">
+<!-- ロゴ・上部タブナビゲーション -->
+<header class="site-header">
+   <nav class="site-nav" aria-label="メインナビゲーション">
+     <ul class="nav-list">
+       <li class="nav-item">
+       <a href="index.html">Home</a>
+       </li>
+       <li class="nav-item">
+       <a href="recipes.html">Recipes</a>
+       </li>
+       <li class="nav-item">
+       <a href="only.html">〇〇だけレシピ</a>
+       </li>
+       <li class="nav-item">
+       <a href="vegetable.html">野菜の見分け方</a>
+       </li>
+       <li class="nav-item active">
+       <a href="diet.html" aria-current="page">ダイエット</a>
+       </li>
+     </ul>
+   </nav>
+</header>
+   
+<div class="global-search" style="display: flex; justify-content: center; align-items: center; gap: 5px; padding: 15px 5%;">
+<input type="text" id="search-input" placeholder="Learny全体を検索..." style="width: 240px; padding:10px 15px; border:1px solid #ccc; border-radius:20px; outline:none;">
+<button type="button" id="search-btn" style="border: none; background: #83bfa5; padding: 10px 15px; border-radius: 50%; cursor: pointer;">🔍</button>
+</div> <!-- ← ここに閉じタグを追加しました！ -->
+<div id="search-results" class="global-search-results"></div>
+<!-- ダイエットレシピ一覧 -->
+<main class="recipe-container" id="all-recipes-container">
+<!-- レシピは search.js / diet.js から表示 -->
+</main>
+<!-- ダイエットを成功させるコツ -->
+<section class="diet-tips-section">
+<h2 class="diet-section-title">ダイエットを成功させるコツ（具材の選び方）</h2>
+<div class="diet-tips-grid">
+<!-- タンパク質 -->
+<article class="diet-tip-card">
+<div class="diet-tip-icon">
+<img src="images/food-icon.png" alt="タンパク質">
+</div>
+<h3>タンパク質（筋肉を維持する）</h3>
+<p>選ぶもの：鶏ささみ、鶏むね肉（皮なし）、白身魚、青魚、大豆、豆腐、納豆、卵</p>
+<p>コツ：牛バラ肉など脂質の多い部位ばかりに偏らず、赤身やささみなども取り入れましょう。</p>
+</article>
+<!-- 食物繊維 -->
+<article class="diet-tip-card">
+<div class="diet-tip-icon">
+<img src="images/food-icon.png" alt="食物繊維">
+</div>
+<h3>食物繊維（満腹感をサポート）</h3>
+<p>選ぶもの：しいたけ、しめじ、えのき、わかめ、もずく、こんにゃく、キャベツ、ブロッコリー</p>
+<p>コツ：汁物や炒め物にきのこや海藻を加え、食事のボリュームを増やしましょう。</p>
+</article>
+<!-- 炭水化物 -->
+<article class="diet-tip-card">
+<div class="diet-tip-icon">
+<img src="images/food-icon.png" alt="炭水化物">
+</div>
+<h3>炭水化物（種類を選ぶ）</h3>
+<p>選ぶもの：オートミール、玄米、雑穀米、全粒粉のパン</p>
+<p>コツ：精製度の低い穀物も取り入れ、食物繊維を意識した食事にしましょう。</p>
+</article>
+<!-- 脂質 -->
+<article class="diet-tip-card">
+<div class="diet-tip-icon">
+<img src="images/food-icon.png" alt="脂質">
+</div>
+<h3>脂質（質と量を意識する）</h3>
+<p>選ぶもの：青魚、ナッツ類、アボカドなど</p>
+<p>コツ：バターやマヨネーズ、調理油などの使いすぎに気をつけ、適量を心がけましょう。</p>
+</article>
+</div>
+</section>
+<!-- 調理・食べ方のコツ -->
+<section class="recommend-section">
+<h2 class="diet-section-title">調理・食べ方のコツ</h2>
+<div class="recommend-grid">
+<!-- 野菜や海藻 -->
+<article class="recommend-card">
+<div class="recommend-img-wrapper">
+<img src="images/pasta.png" alt="野菜と海藻">
+</div>
+<h3>野菜や海藻から食べる</h3>
+<p>野菜や海藻を食事に取り入れ、食物繊維を意識した食べ方を心がけましょう。</p>
+</article>
+<!-- 噛み応え -->
+<article class="recommend-card">
+<div class="recommend-img-wrapper">
+<img src="images/tsuyu.png" alt="食事の様子">
+</div>
+<h3>噛み応えを残す調理</h3>
+<p>食材を大きめに切り、加熱しすぎないことで、よく噛んで食べることにつながります。</p>
+</article>
+<!-- 油や調味料 -->
+<article class="recommend-card">
+<div class="recommend-img-wrapper">
+<img src="images/tea.png" alt="調理の工夫">
+</div>
+<h3>油や調味料を使いすぎない</h3>
+<p>揚げる・炒めるだけでなく、蒸す・茹でる調理も活用し、油や高脂質な調味料の量を調整しましょう。</p>
+</article>
+<!-- 温かいメニュー -->
+<article class="recommend-card">
+<div class="recommend-img-wrapper">
+<img src="images/tea.png" alt="温かいスープ">
+</div>
+<h3>温かいメニューを取り入れる</h3>
+<p>スープや鍋などを取り入れると、食事の満足感を高めやすくなります。</p>
+</article>
+</div>
+</section>
+</body>
+</html>

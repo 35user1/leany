@@ -1,0 +1,910 @@
+/* 共通設定 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff7d2;
+  color: #333;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ローディング画面 */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #a8e6cf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.loading-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.lion-avatar-wrapper {
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background-color: #5d2533;
+  padding: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: float 2s ease-in-out infinite alternate;
+  overflow: hidden;
+}
+
+.lion-avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+.typing-container {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2d5a43;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30px;
+}
+
+.cursor {
+  animation: blink 0.8s infinite;
+  color: #2d5a43;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ヘッダー・ナビゲーション */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 130;
+  width: 100%;
+  background-color: #fcfbfa;
+  border-bottom: 1px solid #eee8dc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2d5a43;
+  margin: 0;
+}
+
+.logo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-nav {
+  width: 100%;
+  background-color: #a8e6cf;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  list-style: none;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.nav-item {
+  flex: 0 0 auto;
+}
+
+.nav-item a {
+  display: block;
+  padding: 12px 16px;
+  color: #5d2533;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-item a:hover {
+  color: #1f3d2e;
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.nav-item.active a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 5px;
+  background-color: #2d5a43;
+  border-radius: 2px 2px 0 0;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #fff7d2;
+  border-radius: 20px;
+  padding: 4px 4px 4px 15px;
+  width: 200px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.85rem;
+  width: 100%;
+  color: #444;
+}
+
+.search-btn {
+  background-color: #a8e6cf;
+  border: none;
+  border-radius: 50px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: #2d5a43;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.search-btn:hover {
+  color: #88c9b3;
+}
+
+/* 検索機能 */
+.global-search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 5%;
+}
+
+.global-search input {
+  width: 220px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.global-search button {
+  border: none;
+  background: #83bfa5;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.global-search-results {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* アプリヘッダー */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 130;
+  width: 100%;
+  min-height: 60px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: #fff7d2;
+  border-bottom: 1px solid #eee8dc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.header-title {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #2d5a43;
+  line-height: 1.4;
+}
+
+
+
+
+
+
+
+/* 自分用*/
+
+.main-content {
+
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 20px;
+
+}
+
+.recipe-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 15px;
+
+}
+
+.recipe-card {
+
+  min-width: 0;
+
+  background: #fff;
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+  display: flex;
+
+  flex-direction: column;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+
+}
+
+.recipe-card:hover {
+
+  transform: translateY(-4px);
+
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+
+}
+
+.card-content {
+
+  padding: 12px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  flex-grow: 1;
+
+}
+
+.card-content h3 {
+
+  font-size: 0.95rem;
+
+  margin-bottom: 6px;
+
+  color: #333;
+
+  line-height: 1.4;
+
+}
+
+.card-subtitle {
+
+  font-size: 0.8rem;
+
+  color: #666;
+
+  margin-bottom: 10px;
+
+  flex-grow: 1;
+
+}
+
+.view-btn {
+
+  display: inline-block;
+
+  padding: 8px 18px;
+
+  background-color: #88c9b3;
+
+  color: #2d5a43;
+
+  border: none;
+
+  border-radius: 20px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  font-size: 0.85rem;
+
+  white-space: nowrap;
+
+  transition: transform 0.2s, background-color 0.2s;
+
+}
+
+.view-btn:hover {
+
+  background-color: #a8e6cf;
+
+  transform: scale(1.03);
+
+}
+
+/* おすすめレシピのスライダー */
+
+.carousel-containar {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1100px;
+
+  margin: 20px auto 30px;
+
+  padding: 0;
+
+}
+
+.slider-wrapper {
+
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+
+  background-color: #5d2533;
+
+}
+
+.slide-card {
+
+  display: none;
+
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+
+  align-items: stretch;
+
+  color: #fff;
+
+  width: 100%;
+
+  min-height: 420px;
+
+}
+
+.slide-card.active {
+
+  display: grid;
+
+  animation: fadeIn 0.4s ease-in-out;
+
+}
+
+@keyframes fadeIn {
+
+  from { opacity: 0; }
+
+  to { opacity: 1; }
+
+}
+
+.slide-image {
+
+  width: 100%;
+
+  height: 420px;
+
+  min-height: 420px;
+
+  overflow: hidden;
+
+  background-color: #5d2533;
+
+}
+
+.slide-image img {
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+}
+
+.slide-info {
+
+  min-width: 0;
+
+  padding: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  background-color: #5d2533;
+
+}
+
+.slide-info h2 {
+
+  font-size: 1.6rem;
+
+  margin-bottom: 8px;
+
+  color: #fff;
+
+  line-height: 1.5;
+
+}
+
+.slide-sub {
+
+  font-size: 0.95rem;
+
+  color: #fff7d2;
+
+  margin-bottom: 10px;
+
+}
+
+.slide-desc {
+
+  font-size: 0.95rem;
+
+  color: #eee;
+
+  margin-bottom: 20px;
+
+}
+
+.slider-arrow {
+
+  display: none;
+
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 40px;
+
+  height: 40px;
+
+  background-color: rgba(255, 255, 255, 0.9);
+
+  border: none;
+
+  border-radius: 50%;
+
+  font-size: 1.1rem;
+
+  font-weight: bold;
+
+  color: #333;
+
+  cursor: pointer;
+
+  z-index: 10;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+}
+
+.slider-arrow.prev { left: 15px; }
+
+.slider-arrow.next { right: 15px; }
+
+.dots-container {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 14px;
+
+}
+
+.dot {
+
+  width: 10px;
+
+  height: 10px;
+
+  background-color: #ccc;
+
+  border: none;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s, transform 0.3s;
+
+}
+
+.dot.active {
+
+  background-color: #7a4a32;
+
+  transform: scale(1.2);
+
+}
+ 
+/* ==========================================
+  style.css 【後半】
+  ========================================== */
+/* Latest Recipes */
+.section-title {
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ font-size: 1.3rem;
+ text-align: center;
+ color: #5d2533;
+ margin-bottom: 18px;
+ font-weight: bold;
+}
+.latest-recipes-grid {
+ display: grid;
+ grid-template-columns: repeat(3, minmax(0, 1fr));
+ gap: 20px;
+ width: 100%;
+}
+.latest-recipes-grid .recipe-card {
+ display: flex;
+ flex-direction: column;
+ min-width: 0;
+ height: 100%;
+}
+.latest-recipes-grid .recipe-card-img {
+ position: relative;
+ width: 100%;
+ aspect-ratio: 4 / 3;
+ height: auto;
+ overflow: hidden;
+ flex-shrink: 0;
+}
+.latest-recipes-grid .recipe-card-img img {
+ display: block;
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ object-position: center;
+}
+.latest-recipes-grid .recipe-card-body {
+ padding: 12px;
+ background-color: #fff;
+}
+.recipe-badge {
+ position: absolute;
+ bottom: 8px;
+ left: 8px;
+ background-color: rgba(136, 201, 179, 0.95);
+ color: #2d5a43;
+ font-size: 0.7rem;
+ font-weight: bold;
+ padding: 3px 8px;
+ border-radius: 10px;
+}
+.filter-sidebar {
+ width: 100%;
+ min-width: 0;
+ margin-top: 40px;
+ padding: 25px;
+ background-color: #fcfbf9;
+ border-radius: 12px;
+}
+.tips-list {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 20px;
+}
+.tip-card {
+ display: flex;
+ flex-direction: column;
+ gap: 12px;
+ padding: 18px;
+ background-color: #fff;
+ border: 1px solid #f0e9dc;
+ border-radius: 10px;
+}
+.tip-tag {
+ display: inline-block;
+ background-color: #5d2533;
+ color: #fff7d2;
+ font-size: 0.65rem;
+ font-weight: bold;
+ padding: 2px 6px;
+ border-radius: 4px;
+ margin-bottom: 4px;
+ width: fit-content;
+}
+.tip-card h3 {
+ font-size: 0.9rem;
+ color: #2d5a43;
+ margin-bottom: 6px;
+}
+.tip-card p {
+ width: 100%;
+ line-height: 1.6;
+}
+/* レシピ一覧（Dietページ用） */
+.recipe-container {
+ display: block;
+ width: 100%;
+ max-width: 900px;
+ margin: 0 auto;
+ padding: 20px;
+}
+.recipe-item-block {
+ width: 100%;
+ margin-bottom: 50px;
+ padding: 24px;
+ background-color: #fff;
+ border: 1px solid #f0e9dc;
+ border-radius: 14px;
+ box-shadow: 0 4px 14px rgba(72, 81, 56, 0.06);
+ overflow-wrap: anywhere;
+}
+.recipe-title-text {
+ font-size: 1.5rem;
+ line-height: 1.5;
+ color: #2d5a43;
+ margin-bottom: 5px;
+}
+.recipe-subtitle-text {
+ color: #666;
+ font-size: 0.95rem;
+ font-style: italic;
+ margin-bottom: 15px;
+}
+.recipe-image-container {
+ width: 100%;
+ max-width: 600px;
+ margin: 15px auto;
+ overflow: hidden;
+ border-radius: 12px;
+ display: flex;
+ justify-content: center;
+}
+.recipe-image-container img {
+ display: block;
+ width: 100%;
+ height: auto;
+ max-height: 360px;
+ object-fit: cover;
+ border-radius: 12px;
+}
+.recipe-section {
+ margin-bottom: 25px;
+}
+.recipe-section h3 {
+ font-size: 1rem;
+ border-left: 4px solid #88c9b3;
+ padding-left: 10px;
+ margin: 20px 0 12px;
+ color: #2d5a43;
+ line-height: 1.5;
+}
+/* 材料リスト */
+.ingredient-list {
+ list-style: none;
+ padding: 0;
+ margin: 0;
+}
+.ingredient-list li {
+ display: flex;
+ align-items: flex-start;
+ justify-content: space-between;
+ gap: 12px;
+ padding: 10px 4px;
+ border-bottom: 1px dashed #e6e6e0;
+ font-size: 0.95rem;
+ line-height: 1.6;
+}
+.ing-name {
+ min-width: 0;
+ flex: 1;
+ color: #333;
+ overflow-wrap: anywhere;
+}
+.ing-amount {
+ flex-shrink: 0;
+ color: #555;
+ font-weight: bold;
+ text-align: right;
+}
+/* 作り方リスト */
+.step-list {
+ list-style: decimal;
+ padding-left: 25px;
+ margin: 0;
+}
+.step-list li {
+ margin-bottom: 12px;
+ padding-left: 4px;
+ line-height: 1.8;
+ font-size: 0.95rem;
+ color: #444;
+}
+.step-list li::marker {
+ color: #2d5a43;
+ font-weight: bold;
+}
+/* ダイエットページ：コツのセクション */
+.diet-section-title {
+ width: 100%;
+ max-width: 1000px;
+ margin: 40px auto 25px;
+ padding: 0 10px;
+ text-align: center;
+ font-size: 1.5rem;
+ line-height: 1.5;
+ color: #2d5a43;
+ font-weight: bold;
+}
+.diet-tips-section {
+ width: 100%;
+ padding: 30px 20px 45px;
+ background-color: #fcfbf9;
+}
+.diet-tips-grid {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 20px;
+ width: 100%;
+ max-width: 1000px;
+ margin: 0 auto;
+}
+.diet-tip-card {
+ min-width: 0;
+ padding: 24px 20px;
+ background-color: #fff;
+ border: 1px solid #f0e9dc;
+ border-radius: 12px;
+ box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+.diet-tip-icon {
+ width: 90px;
+ height: 90px;
+ margin: 0 auto 14px;
+}
+.diet-tip-icon img {
+ width: 100%;
+ height: 100%;
+ object-fit: contain;
+ border-radius: 10px;
+}
+.diet-tip-card h3 {
+ font-size: 1.05rem;
+ color: #5d2533;
+ margin-bottom: 12px;
+ font-weight: bold;
+}
+.diet-tip-card p {
+ font-size: 0.9rem;
+ color: #555;
+ line-height: 1.8;
+ margin-bottom: 10px;
+}
+/* 調理・食べ方のコツ */
+.recommend-section {
+ width: 100%;
+ padding: 25px 20px 60px;
+ background-color: #fff;
+}
+.recommend-grid {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 20px;
+ width: 100%;
+ max-width: 1000px;
+ margin: 0 auto;
+}
+.recommend-card {
+ min-width: 0;
+ padding: 20px;
+ background-color: #fdfaf6;
+ border: 1px solid #f3ebe1;
+ border-radius: 12px;
+}
+.recommend-img-wrapper {
+ width: 100%;
+ height: 200px;
+ margin: 0 auto 18px;
+ overflow: hidden;
+ border-radius: 10px;
+ background-color: #f3f0e7;
+}
+.recommend-img-wrapper img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ border-radius: 10px;
+}
+.recommend-card h3 {
+ font-size: 1.1rem;
+ color: #c97a55;
+ margin-bottom: 12px;
+ font-weight: bold;
+}
+.recommend-card p {
+ font-size: 0.9rem;
+ color: #555;
+ line-height: 1.8;
+}
+/* レスポンシブ対応 */
+@media (max-width: 600px) {
+ .recipe-grid, .latest-recipes-grid, .diet-tips-grid, .recommend-grid, .tips-list {
+   grid-template-columns: 1fr;
+ }
+}
