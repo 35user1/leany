@@ -1,0 +1,111 @@
+/* レビュー欄に足した部品のCSS（既存の style1.css のレビュー用の装飾はそのまま使えます） */
+.review-section {
+  --rv-brown: #5B3F2E;
+  --rv-brown-soft: #7A5E4C;
+  --rv-mint: #A9D8BF;
+  --rv-wine: #7B2D3B;
+  --rv-wine-dark: #62222E;
+  --rv-line: rgba(91, 63, 46, 0.22);
+}
+
+.review-section [hidden] { display: none; }
+
+/* 写真を選ぶ欄 */
+.review-form input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--rv-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--rv-brown);
+  font: inherit;
+}
+
+.review-form textarea { resize: vertical; }
+
+/* ログインを促す文 */
+.rv-note {
+  margin: 16px 0;
+  color: var(--rv-brown-soft);
+  font-size: 0.92rem;
+}
+
+.rv-note a { color: var(--rv-wine); }
+
+/* 投稿後・エラーのメッセージ */
+#review-message {
+  margin: 16px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+#review-message[data-type="error"] {
+  border: 1px solid var(--rv-wine);
+  color: var(--rv-wine);
+}
+
+#review-message[data-type="success"] {
+  background: var(--rv-mint);
+  color: var(--rv-brown);
+}
+
+/* 投稿されたレビュー1件分 */
+.rv-item {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--rv-line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--rv-brown);
+}
+
+.rv-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin-bottom: 8px;
+}
+
+.rv-stars { color: var(--rv-wine); letter-spacing: 0.1em; }
+
+.rv-date {
+  margin-left: auto;
+  color: var(--rv-brown-soft);
+  font-size: 0.8rem;
+}
+
+.rv-comment {
+  margin: 0 0 10px;
+  white-space: pre-wrap; /* 入力した改行をそのまま表示する */
+  word-break: break-word;
+}
+
+.rv-photo {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.rv-delete {
+  margin-top: 10px;
+  padding: 2px 10px;
+  border: 1px solid var(--rv-wine);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--rv-wine);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.rv-delete:hover { background: var(--rv-wine); color: #FBF6EA; }
+
+.review-section :focus-visible {
+  outline: 3px solid var(--rv-mint);
+  outline-offset: 2px;
+}
