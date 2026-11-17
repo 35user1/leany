@@ -949,7 +949,7 @@ margin-top: 10px;
    .slide-info {
        padding: 15px;
    }
-   .slider-arrow {
+   /*.slider-arrow {
        top: 80px;
    }
    .slider-arrow.prev {
@@ -958,6 +958,7 @@ margin-top: 10px;
    .slider-arrow.next { 
       right: 10px; 
    }
+  */
    /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^tuika^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
    .recipe-grid {
         grid-template-columns: 1fr;
