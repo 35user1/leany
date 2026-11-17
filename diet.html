@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ダイエットレシピ - Learny</title>
-<link rel="icon" href="images/キャラデザ（ファビコン用）.png">
-<link rel="stylesheet" href="css/style.css">
-<script src="js/diet.js" defer></script>
-<script src="js/script.js" defer></script>
-<script src="js/search.js" defer></script>
-<link rel="stylesheet" href="css/auth-status.css">
-<div id="auth-status" class="auth-status" data-auth-url="auth.html"></div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ダイエットレシピ - Learny</title>
+  <link rel="icon" href="images/キャラデザ（ファビコン用）.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/diet.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <script src="js/search.js" defer></script>
+  <link rel="stylesheet" href="css/auth-status.css">
+  <div id="auth-status" class="auth-status" data-auth-url="auth.html"></div>
 </head>
 <body class="recipe-detail-body">
 <!-- ロゴ・上部タブナビゲーション -->
@@ -54,20 +54,24 @@
 <main class="recipe-container" id="all-recipes-container">
 <!-- レシピは search.js / diet.js から表示 -->
 </main>
+
 <!-- ダイエットを成功させるコツ -->
 <section class="diet-tips-section">
 <h2 class="diet-section-title">ダイエットを成功させるコツ（具材の選び方）</h2>
-<div class="diet-tips-grid">
-<!-- タンパク質 -->
-<article class="diet-tip-card">
-<div class="diet-tip-icon">
-<img src="images/food-icon.png" alt="タンパク質">
-</div>
-<h3>タンパク質（筋肉を維持する）</h3>
-<p>選ぶもの：鶏ささみ、鶏むね肉（皮なし）、白身魚、青魚、大豆、豆腐、納豆、卵</p>
-<p>コツ：牛バラ肉など脂質の多い部位ばかりに偏らず、赤身やささみなども取り入れましょう。</p>
-</article>
-<!-- 食物繊維 -->
+
+ <div class="diet-tips-grid">
+  <!-- タンパク質 -->
+ <article class="diet-tip-card">
+  <div class="diet-tip-icon">
+  <img src="images/food-icon.png" alt="タンパク質">
+ </div>
+
+  <h3>タンパク質（筋肉を維持する）</h3>
+  <p>選ぶもの：鶏ささみ、鶏むね肉（皮なし）、白身魚、青魚、大豆、豆腐、納豆、卵</p>
+  <p>コツ：牛バラ肉など脂質の多い部位ばかりに偏らず、赤身やささみなども取り入れましょう。</p>
+ </article>
+
+ <!-- 食物繊維 -->
 <article class="diet-tip-card">
 <div class="diet-tip-icon">
 <img src="images/food-icon.png" alt="食物繊維">
@@ -134,5 +138,9 @@
 </article>
 </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/auth-status.js"></script>
 </body>
 </html>
